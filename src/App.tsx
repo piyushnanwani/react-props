@@ -1,30 +1,49 @@
-const classicMovies = [
-  "The Godfather",
-  "The Shawshank Redemption",
-  "Inception",
-  "Pulp Fiction",
-  "The Dark Knight"
-];
+function BadList() {
+  const items = ['Apple', 'Banana', 'Mango'];
 
-function Header({ data, number }: { data: string; number: number }) {
   return (
-    <h1>
-      {data} {number}{" "}
-    </h1>
-  ); // data is a variable, we will curl
+    <ul>
+      {items.map((fruit, index) => {
+        return (
+          <li>{fruit} </li>
+        )
+      })}
+    </ul>
+  )
 }
+
+function BadList2() {
+  const items = ["Apple", "Banana", "Mango"];
+
+  return (
+    <ul>
+      {items.map((fruit, index) => {
+        return <li key={index} >{fruit} </li>;
+      })}
+    </ul>
+  );
+}
+
+function GoodList() {
+  const items = [{ name: "Apple", id: 1}, {name: "Banana", id: 4}, {name: "Mango", id: 10}];
+
+  return (
+    <ul>
+      {items.map((fruit, index) => {
+        return <li key={fruit.id}>{fruit.name} </li>;
+      })}
+    </ul>
+  );
+}
+
+
 
 function App() {
   return (
     <>
-      {classicMovies.map((movie, idx) => {
-        return <Header data={movie} number={idx} />;
-      })}
-
-      {/* <Header data="Heading 1" number={12} />
-      <Header data="Heading 2" number={23} />
-      <Header data="Heading 3" number={99} /> */}
-      <h1>this is a functional component (Parent)</h1>
+      <BadList />
+      <BadList2 />
+      <GoodList />
     </>
   );
 }
